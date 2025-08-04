@@ -11,19 +11,55 @@ const contactFormSchema = z.object({
   message: z.string().min(10, { message: "A mensagem precisa ter no mínimo 10 caracteres." }),
 });
 
+// Tipagem para os dados do formulário para maior clareza
+type ContactFormData = z.infer<typeof contactFormSchema>;
+
 export const ContactForm = () => {
-    const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm({
+    const { 
+        register, 
+        handleSubmit, 
+        formState: { errors, isSubmitting }, 
+        reset
+    } = useForm<ContactFormData>({
         resolver: zodResolver(contactFormSchema)
     });
+    
     const [submitStatus, setSubmitStatus] = useState<{success: boolean; message: string} | null>(null);
 
-    const onSubmit = async (data: z.infer<typeof contactFormSchema>) => {
-        console.log("Enviando dados:", data);
-        await new Promise(resolve => setTimeout(resolve, 2000));
+    // ✅ FUNÇÃO onSubmit MODIFICADA E COMPLETA
+    const onSubmit = async (data: ContactFormData) => {
+        setSubmitStatus(null); // Limpa qualquer status de envio anterior
+
+        try {
+            const response = await fetch('/api/send-email', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            // Se a resposta do servidor não for 'OK' (ex: status 400, 500), lança um erro
+            if (!response.ok) {
+                throw new Error('Houve uma falha na resposta do servidor.');
+            }
+
+            // Se a requisição foi bem-sucedida
+            setSubmitStatus({ success: true, message: "Mensagem enviada com sucesso! Obrigado." });
+            reset(); // Limpa os campos do formulário
+
+        } catch (error) {
+            // Se ocorrer qualquer erro na requisição (ex: rede, falha no servidor)
+            console.error("Falha ao enviar o formulário:", error);
+            setSubmitStatus({ success: false, message: "Ocorreu um erro ao enviar. Tente novamente." });
         
-        setSubmitStatus({ success: true, message: "Mensagem enviada com sucesso! Obrigado pelo contato." });
-        reset();
-        setTimeout(() => setSubmitStatus(null), 5000);
+        } finally {
+            // Este bloco será executado sempre, após o try ou o catch
+            // Esconde a mensagem de status após 5 segundos
+            setTimeout(() => {
+                setSubmitStatus(null);
+            }, 5000);
+        }
     };
 
     return (
@@ -53,6 +89,7 @@ export const ContactForm = () => {
                         {...register("name")}
                         className="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                         placeholder="Seu nome completo"
+                        disabled={isSubmitting}
                     />
                     {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name.message}</p>}
                 </div>
@@ -64,6 +101,7 @@ export const ContactForm = () => {
                         {...register("email")}
                         className="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                         placeholder="seu.email@exemplo.com"
+                        disabled={isSubmitting}
                     />
                     {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>}
                 </div>
@@ -75,6 +113,7 @@ export const ContactForm = () => {
                         {...register("message")}
                         className="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all resize-none"
                         placeholder="Deixe sua mensagem aqui..."
+                        disabled={isSubmitting}
                     ></textarea>
                     {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message.message}</p>}
                 </div>
