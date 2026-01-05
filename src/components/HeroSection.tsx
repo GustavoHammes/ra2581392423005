@@ -23,7 +23,7 @@ export const HeroSection = () => (
       </p>
       <div className="flex flex-wrap justify-center gap-4">
           <motion.a 
-            href="/Curriculo_Gustavo_Hammes.pdf"
+            href="/Currículo Gustavo Hammes 05.01.pdf"
             target="_blank"
             className="flex items-center gap-2 bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg shadow-indigo-600/30 transition-all"
             whileHover={{ scale: 1.05, y: -5, boxShadow: "0px 10px 20px rgba(99, 102, 241, 0.4)" }}
