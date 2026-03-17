@@ -4,7 +4,7 @@
       "id": "1",
       "title": "NLW Agents",
       "description": "Aplicação com IA, transcrição de áudio e interface moderna construída com React e TailwindCSS.",
-      "image": "/assets/images/nlw-agents.png",
+      "image": "/projects/nlw-agents.png",
       "tags": [
         "React",
         "IA",
@@ -12,8 +12,8 @@
       ],
       "category": "Pessoal",
       "featured": true,
-      "liveUrl": "",
-      "githubUrl": ""
+      "liveUrl": "https://github.com/GustavoHammes/NLW-agents-Rocketseat",
+      "githubUrl": "https://github.com/GustavoHammes/NLW-agents-Rocketseat"
     },
     {
       "id": "2",
