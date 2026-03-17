@@ -1,0 +1,45 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "NLW Agents",
+      "description": "Aplicação com IA, transcrição de áudio e interface moderna construída com React e TailwindCSS.",
+      "image": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=340&fit=crop",
+      "tags": ["React", "IA", "TailwindCSS"],
+      "category": "Pessoal",
+      "featured": true,
+      "liveUrl": "",
+      "githubUrl": ""
+    },
+    {
+      "id": "2",
+      "title": "ABP – Dashboard Solar",
+      "description": "Visualização interativa de dados ambientais com React, TypeScript, e Leaflet para análise geoespacial.",
+      "image": "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=340&fit=crop",
+      "tags": ["React", "TypeScript", "Leaflet"],
+      "category": "Faculdade",
+      "featured": true,
+      "liveUrl": "",
+      "githubUrl": ""
+    },
+    {
+      "id": "3",
+      "title": "Simulador Financeiro",
+      "description": "Ferramenta para simulação de investimentos e empréstimos com cálculos em tempo real.",
+      "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=340&fit=crop",
+      "tags": ["React", "TypeScript"],
+      "category": "Faculdade",
+      "featured": false,
+      "liveUrl": "",
+      "githubUrl": ""
+    }
+  ],
+  "certificates": [
+    { "id": "1", "title": "NLW Agents", "issuer": "Rocketseat", "year": "2025", "url": "" },
+    { "id": "2", "title": "Discover", "issuer": "Rocketseat", "year": "2024", "url": "" },
+    { "id": "3", "title": "Bootcamp Creator IT – Low Code", "issuer": "Creator IT", "year": "2024", "url": "" },
+    { "id": "4", "title": "Front-end com Gemini", "issuer": "Alura", "year": "2024", "url": "" },
+    { "id": "5", "title": "Imersão Cloud Devops", "issuer": "Alura", "year": "2024", "url": "" },
+    { "id": "6", "title": "NDG Linux Unhatched", "issuer": "Cisco", "year": "2023", "url": "" }
+  ]
+}

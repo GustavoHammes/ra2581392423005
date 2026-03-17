@@ -1,40 +1,40 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Project, Certificate, DEFAULT_PROJECTS, DEFAULT_CERTIFICATES } from '../data/projects';
+import type { Project, Certificate } from '../data/projects';
+import { DEFAULT_PROJECTS, DEFAULT_CERTIFICATES } from '../data/projects';
 
-const ADMIN_PASSWORD = 'Hammes1801@'; // Troque essa senha!
-const STORAGE_KEY_PROJECTS = 'gh_portfolio_projects';
-const STORAGE_KEY_CERTS = 'gh_portfolio_certs';
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'gh2024admin';
+
+export type SaveStatus = 'idle' | 'saving' | 'saved' | 'error';
 
 export function useAdmin() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [projects, setProjects] = useState<Project[]>(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY_PROJECTS);
-      return stored ? JSON.parse(stored) : DEFAULT_PROJECTS;
-    } catch {
-      return DEFAULT_PROJECTS;
-    }
-  });
-  const [certificates, setCertificates] = useState<Certificate[]>(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY_CERTS);
-      return stored ? JSON.parse(stored) : DEFAULT_CERTIFICATES;
-    } catch {
-      return DEFAULT_CERTIFICATES;
-    }
-  });
+  const [projects, setProjects] = useState<Project[]>(DEFAULT_PROJECTS);
+  const [certificates, setCertificates] = useState<Certificate[]>(DEFAULT_CERTIFICATES);
+  const [loading, setLoading] = useState(true);
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
 
-  // Atalho Ctrl+Shift+A para abrir o painel admin
+  // Load data.json on mount (works for all visitors)
+  useEffect(() => {
+    fetch('/data.json')
+      .then(r => r.json())
+      .then((d: { projects: Project[]; certificates: Certificate[] }) => {
+        if (d.projects) setProjects(d.projects);
+        if (d.certificates) setCertificates(d.certificates);
+      })
+      .catch(() => {
+        // fallback to defaults if fetch fails
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  // Keyboard shortcut Ctrl+Shift+A
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.key === 'A') {
         e.preventDefault();
-        if (isAdmin) {
-          setIsAdmin(false);
-        } else {
-          setShowLoginModal(true);
-        }
+        if (isAdmin) setIsAdmin(false);
+        else setShowLoginModal(true);
       }
     };
     window.addEventListener('keydown', handler);
@@ -50,49 +50,89 @@ export function useAdmin() {
     return false;
   }, []);
 
-  const logout = useCallback(() => {
-    setIsAdmin(false);
+  const logout = useCallback(() => setIsAdmin(false), []);
+
+  // Persist data to GitHub via API (updates data.json in the repo)
+  const persist = useCallback(async (
+    updatedProjects: Project[],
+    updatedCertificates: Certificate[]
+  ) => {
+    setSaveStatus('saving');
+    try {
+      const res = await fetch('/api/saveData', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          password: ADMIN_PASSWORD,
+          data: { projects: updatedProjects, certificates: updatedCertificates },
+        }),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Erro desconhecido');
+      }
+      setSaveStatus('saved');
+      setTimeout(() => setSaveStatus('idle'), 3000);
+    } catch (err) {
+      console.error('persist error:', err);
+      setSaveStatus('error');
+      setTimeout(() => setSaveStatus('idle'), 4000);
+    }
   }, []);
 
-  const saveProjects = useCallback((updated: Project[]) => {
-    setProjects(updated);
-    localStorage.setItem(STORAGE_KEY_PROJECTS, JSON.stringify(updated));
-  }, []);
-
-  const saveCertificates = useCallback((updated: Certificate[]) => {
-    setCertificates(updated);
-    localStorage.setItem(STORAGE_KEY_CERTS, JSON.stringify(updated));
-  }, []);
-
+  // --- Projects CRUD ---
   const addProject = useCallback((project: Omit<Project, 'id'>) => {
     const newProject = { ...project, id: Date.now().toString() };
-    saveProjects([...projects, newProject]);
-  }, [projects, saveProjects]);
+    const updated = [...projects, newProject];
+    setProjects(updated);
+    persist(updated, certificates);
+  }, [projects, certificates, persist]);
 
   const removeProject = useCallback((id: string) => {
-    saveProjects(projects.filter(p => p.id !== id));
-  }, [projects, saveProjects]);
+    const updated = projects.filter(p => p.id !== id);
+    setProjects(updated);
+    persist(updated, certificates);
+  }, [projects, certificates, persist]);
 
+  const updateProject = useCallback((id: string, data: Partial<Omit<Project, 'id'>>) => {
+    const updated = projects.map(p => p.id === id ? { ...p, ...data } : p);
+    setProjects(updated);
+    persist(updated, certificates);
+  }, [projects, certificates, persist]);
+
+  // --- Certificates CRUD ---
   const addCertificate = useCallback((cert: Omit<Certificate, 'id'>) => {
     const newCert = { ...cert, id: Date.now().toString() };
-    saveCertificates([...certificates, newCert]);
-  }, [certificates, saveCertificates]);
+    const updated = [...certificates, newCert];
+    setCertificates(updated);
+    persist(projects, updated);
+  }, [projects, certificates, persist]);
 
   const removeCertificate = useCallback((id: string) => {
-    saveCertificates(certificates.filter(c => c.id !== id));
-  }, [certificates, saveCertificates]);
+    const updated = certificates.filter(c => c.id !== id);
+    setCertificates(updated);
+    persist(projects, updated);
+  }, [projects, certificates, persist]);
+
+  const updateCertificate = useCallback((id: string, data: Partial<Omit<Certificate, 'id'>>) => {
+    const updated = certificates.map(c => c.id === id ? { ...c, ...data } : c);
+    setCertificates(updated);
+    persist(projects, updated);
+  }, [projects, certificates, persist]);
 
   const resetToDefaults = useCallback(() => {
-    saveProjects(DEFAULT_PROJECTS);
-    saveCertificates(DEFAULT_CERTIFICATES);
-  }, [saveProjects, saveCertificates]);
+    setProjects(DEFAULT_PROJECTS);
+    setCertificates(DEFAULT_CERTIFICATES);
+    persist(DEFAULT_PROJECTS, DEFAULT_CERTIFICATES);
+  }, [persist]);
 
   return {
     isAdmin, showLoginModal, setShowLoginModal,
     login, logout,
     projects, certificates,
-    addProject, removeProject,
-    addCertificate, removeCertificate,
+    loading, saveStatus,
+    addProject, removeProject, updateProject,
+    addCertificate, removeCertificate, updateCertificate,
     resetToDefaults,
   };
 }
