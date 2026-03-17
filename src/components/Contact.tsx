@@ -150,7 +150,7 @@ export function Contact() {
           { label: 'LinkedIn', href: 'https://linkedin.com/in/gustavohammes', icon: '💼' },
           { label: 'GitHub', href: 'https://github.com/GustavoHammes', icon: '💻' },
           { label: 'Email', href: 'mailto:daffa1632@gmail.com', icon: '✉️' },
-          { label: 'wa.me/+5512996436444', icon: '📱' }
+          { label: 'WhatsApp', href: 'https://wa.me/+5512996436444', icon: '📱' }
         ].map(s => (
           <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 bg-white/[0.04] border border-white/[0.08] hover:border-white/15 text-white/50 hover:text-white px-4 py-2.5 rounded-xl text-sm transition-all duration-200 hover:scale-105">

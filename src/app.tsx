@@ -19,7 +19,7 @@ function Footer({ onAdminClick }: { onAdminClick: () => void }) {
             { href: 'https://github.com/GustavoHammes', icon: 'github' },
             { href: 'https://linkedin.com/in/gustavo-hammes', icon: 'linkedin' },
             { href: 'mailto:daffa1632@gmail.com', icon: 'mail' },
-            { href: 'wa.me/+5512996436444', icon: 'smartphone' },
+            { href: 'https://wa.me/+5512996436444', icon: 'smartphone' },
           ].map(s => (
             <a key={s.icon} href={s.href}
               target={s.icon !== 'mail' ? '_blank' : undefined}
