@@ -4,7 +4,7 @@
       "id": "1",
       "title": "NLW Agents",
       "description": "Aplicação com IA, transcrição de áudio e interface moderna construída com React e TailwindCSS.",
-      "image": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=340&fit=crop",
+      "image": "/assets/images/nlw-agents.png",
       "tags": [
         "React",
         "IA",
@@ -51,42 +51,42 @@
       "title": "NLW Agents",
       "issuer": "Rocketseat",
       "year": "2025",
-      "url": ""
+      "url": "https://app.rocketseat.com.br/certificates/44817ebf-e9fd-4275-b6be-e2f3fba58421"
     },
     {
       "id": "2",
       "title": "Discover",
       "issuer": "Rocketseat",
       "year": "2024",
-      "url": ""
+      "url": "https://app.rocketseat.com.br/certificates/246212d7-5030-4de8-a835-30786b455b0f"
     },
     {
       "id": "3",
       "title": "Bootcamp Creator IT – Low Code",
       "issuer": "Creator IT",
       "year": "2024",
-      "url": ""
+      "url": "/Certificado_lowcode.jpg"
     },
     {
       "id": "4",
       "title": "Front-end com Gemini",
       "issuer": "Alura",
       "year": "2024",
-      "url": ""
+      "url": "https://cursos.alura.com.br/immersion/certificate/b69b431d-6e9c-40aa-8c9e-72e739b92631?lang"
     },
     {
       "id": "5",
       "title": "Imersão Cloud Devops",
       "issuer": "Alura",
       "year": "2024",
-      "url": ""
+      "url": "https://cursos.alura.com.br/immersion/certificate/c2561f7e-153a-4f8c-abe3-d52c00022876?lang"
     },
     {
       "id": "6",
       "title": "NDG Linux Unhatched",
       "issuer": "Cisco",
       "year": "2023",
-      "url": ""
+      "url": "/Certificado_cisco.pdf"
     }
   ]
 }
