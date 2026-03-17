@@ -48,7 +48,7 @@ export function Hero() {
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 blur-md opacity-60 group-hover:opacity-80 transition-opacity" />
           <div className="relative w-36 h-36 rounded-full border-2 border-white/10 overflow-hidden ring-2 ring-indigo-500/30">
             <img
-              src="/foto.jpg"
+              src="/Gustavo_hammes.jpg"
               alt="Gustavo Hammes"
               className="w-full h-full object-cover"
               onError={e => {
@@ -81,7 +81,7 @@ export function Hero() {
         {/* CTAs */}
         <div className="flex flex-wrap gap-4 justify-center">
           <a
-            href="/curriculo.pdf"
+            href="/Currículo_Gustavo_Hammes.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25"
