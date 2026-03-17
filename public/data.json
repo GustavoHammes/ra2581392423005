@@ -34,15 +34,15 @@
       "id": "3",
       "title": "Simulador Financeiro",
       "description": "Ferramenta para simulação de investimentos e empréstimos com cálculos em tempo real.",
-      "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=340&fit=crop",
+      "image": "/projects/investimento.png",
       "tags": [
         "React",
         "TypeScript"
       ],
       "category": "Faculdade",
       "featured": false,
-      "liveUrl": "",
-      "githubUrl": ""
+      "liveUrl": "https://github.com/GustavoHammes/Financias",
+      "githubUrl": "https://github.com/GustavoHammes/Financias"
     }
   ],
   "certificates": [
