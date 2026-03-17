@@ -1,8 +1,8 @@
 import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { ProjectsSection } from './components/ProjectsSection';
-import { CertificatesSection } from './components/CertificatesSection';
-import { ContactForm } from './components/ContactForm';
+import { HeroSection } from './components/Hero';
+import { ProjectsSection } from './components/Projects';
+import { CertificatesSection } from './components/Certificates';
+import { ContactForm } from './components/Contact';
 import { Footer } from './components/Footer';
 
 export default function App() {

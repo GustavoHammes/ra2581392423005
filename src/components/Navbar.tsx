@@ -1,79 +1,82 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import { cn } from '../lib/utils';
 
-export const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+interface NavbarProps {
+  isAdmin: boolean;
+  onAdminClick: () => void;
+}
+
+const NAV_LINKS = [
+  { href: '#sobre', label: 'Sobre' },
+  { href: '#projetos', label: 'Projetos' },
+  { href: '#certificados', label: 'Certificados' },
+  { href: '#contato', label: 'Contato' },
+];
+
+export function Navbar({ isAdmin, onAdminClick }: NavbarProps) {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handler = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
   }, []);
 
-  const navLinks = [
-    { href: "#sobre", label: "Sobre" },
-    { href: "#projetos", label: "Projetos" },
-    { href: "#certificados", label: "Certificados" },
-    { href: "#contato", label: "Contato" },
-  ];
-
   return (
-    <header className={cn(
-      "fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out",
-      isScrolled ? "bg-slate-900/80 backdrop-blur-lg shadow-lg shadow-indigo-900/10" : "bg-transparent"
-    )}>
-      <nav className="container mx-auto px-6 py-4 flex items-center justify-between text-gray-200">
-        <motion.a 
-          href="#" 
-          className="text-2xl font-bold text-white hover:text-indigo-400 transition-colors"
-          whileHover={{ scale: 1.05, textShadow: "0px 0px 8px rgb(129, 140, 248)" }}
-        >
-          GH
-        </motion.a>
-        
-        <ul className="hidden md:flex items-center gap-6 text-sm font-medium">
-          {navLinks.map((link, i) => (
-            <motion.li key={link.href}
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <a href={link.href} className="relative group">
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-            </motion.li>
+    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-[#0d1b2e]/90 backdrop-blur-md border-b border-white/[0.06] py-3' : 'py-5'}`}>
+      <nav className="max-w-6xl mx-auto px-4 flex items-center justify-between">
+        {/* Logo */}
+        <a href="#sobre" className="flex items-center gap-2 group">
+          <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-lg flex items-center justify-center text-white font-black text-sm group-hover:scale-110 transition-transform">
+            GH
+          </div>
+          <span className="text-white/70 text-sm font-medium hidden sm:block group-hover:text-white transition-colors">
+            Gustavo Hammes
+          </span>
+        </a>
+
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-1">
+          {NAV_LINKS.map(link => (
+            <a key={link.href} href={link.href}
+              className="text-white/50 hover:text-white px-4 py-2 rounded-lg hover:bg-white/5 transition-all text-sm font-medium">
+              {link.label}
+            </a>
           ))}
-        </ul>
-
-        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden z-50 text-white">
-          {isMenuOpen ? <X /> : <Menu />}
-        </button>
-
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              className="absolute top-0 left-0 w-full h-screen bg-slate-900/95 backdrop-blur-xl flex flex-col items-center justify-center md:hidden"
-            >
-              <ul className="flex flex-col gap-8 text-2xl text-center">
-                {navLinks.map((link) => (
-                  <li key={`mobile-${link.href}`}>
-                    <a href={link.href} onClick={() => setIsMenuOpen(false)} className="hover:text-indigo-400 transition-colors">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+          {/* Admin indicator */}
+          {isAdmin && (
+            <button onClick={onAdminClick} className="ml-2 flex items-center gap-1.5 bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-indigo-600/30 transition">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              Admin
+            </button>
           )}
-        </AnimatePresence>
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden text-white/60 hover:text-white p-2"
+          onClick={() => setMenuOpen(m => !m)}
+          aria-label="Menu"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {menuOpen
+              ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
+          </svg>
+        </button>
       </nav>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-[#0d1b2e]/95 backdrop-blur-md border-t border-white/[0.06] px-4 py-3 space-y-1">
+          {NAV_LINKS.map(link => (
+            <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}
+              className="block text-white/60 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition text-sm font-medium">
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   );
-};
+}
