@@ -43,6 +43,26 @@
       "featured": false,
       "liveUrl": "https://github.com/GustavoHammes/Financias",
       "githubUrl": "https://github.com/GustavoHammes/Financias"
+    },
+    {
+      "title": "Baixador de Áudio do YouTube",
+      "description": "Um aplicativo Fullstack multiplataforma (Web, Android e iOS) para baixar áudios do YouTube em alta qualidade (MP3) com suporte a extração de capa (thumbnail) original do vídeo.",
+      "image": "/projects/baixador_mp3_mp4.png",
+      "tags": [
+        "React Native",
+        "Expo",
+        "Expo File System",
+        "Expo Sharing",
+        "Node.js",
+        "Express",
+        "yt-dlp",
+        "FFmpeg."
+      ],
+      "category": "Pessoal",
+      "liveUrl": "https://baixador-mp3.vercel.app/",
+      "githubUrl": "https://github.com/GustavoHammes/Projetos_caseiros/tree/main/Projeto%20mp3_mp4",
+      "featured": false,
+      "id": "1773778678436"
     }
   ],
   "certificates": [
