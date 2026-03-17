@@ -17,7 +17,10 @@ export interface Certificate {
   title: string;
   issuer: string;
   year?: string;
+  /** External link (Credly, Rocketseat, etc.) */
   url?: string;
+  /** Local path to PDF stored in public/certificates/ e.g. /certificates/nlw-agents.pdf */
+  pdfPath?: string;
 }
 
 export const DEFAULT_PROJECTS: Project[] = [
@@ -25,7 +28,7 @@ export const DEFAULT_PROJECTS: Project[] = [
     id: '1',
     title: 'NLW Agents',
     description: 'Aplicação com IA, transcrição de áudio e interface moderna construída com React e TailwindCSS.',
-    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=340&fit=crop',
+    image: '/assets/images/nlw-agents.png',
     tags: ['React', 'IA', 'TailwindCSS'],
     category: 'Pessoal',
     featured: true,
@@ -50,10 +53,10 @@ export const DEFAULT_PROJECTS: Project[] = [
 ];
 
 export const DEFAULT_CERTIFICATES: Certificate[] = [
-  { id: '1', title: 'NLW Agents', issuer: 'Rocketseat', year: '2025' },
-  { id: '2', title: 'Discover', issuer: 'Rocketseat', year: '2024' },
+  { id: '1', title: 'NLW Agents',                 issuer: 'Rocketseat', year: '2025' },
+  { id: '2', title: 'Discover',                   issuer: 'Rocketseat', year: '2024' },
   { id: '3', title: 'Bootcamp Creator IT – Low Code', issuer: 'Creator IT', year: '2024' },
-  { id: '4', title: 'Front-end com Gemini', issuer: 'Alura', year: '2024' },
-  { id: '5', title: 'Imersão Cloud Devops', issuer: 'Alura', year: '2024' },
-  { id: '6', title: 'NDG Linux Unhatched', issuer: 'Cisco', year: '2023' },
+  { id: '4', title: 'Front-end com Gemini',        issuer: 'Alura',      year: '2024' },
+  { id: '5', title: 'Imersão Cloud Devops',        issuer: 'Alura',      year: '2024' },
+  { id: '6', title: 'NDG Linux Unhatched',         issuer: 'Cisco',      year: '2023' },
 ];

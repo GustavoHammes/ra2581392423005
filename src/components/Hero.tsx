@@ -48,7 +48,7 @@ export function Hero() {
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 blur-md opacity-60 group-hover:opacity-80 transition-opacity" />
           <div className="relative w-36 h-36 rounded-full border-2 border-white/10 overflow-hidden ring-2 ring-indigo-500/30">
             <img
-              src="/Gustavo_hammes.jpg"
+              src="/Gustavo_hammes.JPG"
               alt="Gustavo Hammes"
               className="w-full h-full object-cover"
               onError={e => {
