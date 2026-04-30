@@ -108,12 +108,12 @@
     {
       "name": "ABP2",
       "image": "",
-      "visible": true
+      "visible": false
     },
     {
       "name": "ABP1",
       "image": "",
-      "visible": true
+      "visible": false
     }
   ]
 }
