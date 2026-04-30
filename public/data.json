@@ -16,21 +16,6 @@
       "githubUrl": "https://github.com/GustavoHammes/NLW-agents-Rocketseat"
     },
     {
-      "id": "2",
-      "title": "ABP – Dashboard Solar",
-      "description": "Visualização interativa de dados ambientais com React, TypeScript, e Leaflet para análise geoespacial feito para o INPE.",
-      "image": "/projects/abp3.jpeg",
-      "tags": [
-        "React",
-        "TypeScript",
-        "Leaflet"
-      ],
-      "category": "Faculdade",
-      "featured": true,
-      "liveUrl": "https://github.com/octacodeteam/ABP3",
-      "githubUrl": "https://github.com/octacodeteam/ABP3"
-    },
-    {
       "id": "3",
       "title": "Simulador Financeiro",
       "description": "Ferramenta para simulação de investimentos e empréstimos com cálculos em tempo real.",
