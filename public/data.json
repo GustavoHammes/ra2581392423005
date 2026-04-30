@@ -104,6 +104,11 @@
       "name": "ABP3",
       "image": "",
       "visible": true
+    },
+    {
+      "name": "ABP2",
+      "image": "",
+      "visible": true
     }
   ]
 }
