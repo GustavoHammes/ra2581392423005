@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GraduationCap, Github, Plus, X, Settings, Loader2 } from 'lucide-react';
 import { useAbpProjects, useOctacodeRepos, type AbpConfig } from '../hooks/useAbpProjects';
@@ -21,7 +21,6 @@ export function AbpProjects({
 }: AbpProjectsProps) {
   const [showManager, setShowManager] = useState(false);
   const [uploadingFor, setUploadingFor] = useState<string | null>(null);
-  const passwordRef = useRef<string>('');
 
   // Projetos visíveis para o visitante
   const { data: projects, isLoading, isError } = useAbpProjects(abpConfig);
