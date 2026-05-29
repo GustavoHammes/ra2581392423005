@@ -48,6 +48,28 @@
       "githubUrl": "https://github.com/GustavoHammes/Projetos_caseiros/tree/main/Projeto%20mp3_mp4",
       "featured": true,
       "id": "1773778678436"
+    },
+    {
+      "title": "App Scholar",
+      "description": "Sistema acadêmico web e mobile para gerenciamento de alunos, professores, disciplinas, notas e boletins. Possui autenticação por perfil, controle de permissões, cálculo automático de médias e situação dos alunos. O projeto também conta com versão mobile em React Native com Expo, podendo ser utilizado no celular pelo Expo Go.",
+      "image": "/projects/e0d205de-f6a3-4034-932a-f101ec1d5257.jfif",
+      "tags": [
+        "React",
+        "Next.js",
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "Prisma",
+        "PostgreSQL",
+        "TailwindCSS"
+      ],
+      "category": "Faculdade",
+      "liveUrl": "",
+      "githubUrl": "https://github.com/GustavoHammes/App_Scholar",
+      "featured": true,
+      "id": "1780097737812"
     }
   ],
   "certificates": [
