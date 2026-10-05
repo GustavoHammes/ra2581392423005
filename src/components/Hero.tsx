@@ -81,7 +81,7 @@ export function Hero() {
         {/* CTAs */}
         <div className="flex flex-wrap gap-4 justify-center">
           <a
-            href="/Currículo_Gustavo_Hammes.pdf"
+            href="/Gustavo-Henrique-Ferreira-Hammes_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25"
