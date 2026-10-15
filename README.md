@@ -9,7 +9,7 @@ npm ci
 npm run dev
 ```
 
-O Vite também executa os mesmos handlers de `/api` usados na Vercel. A sincronização pública do GitHub funciona sem configurar variáveis. Para contato e administração, copie `.env.example` para `.env.local` e preencha somente o necessário.
+O Vite também executa os mesmos handlers de `/api` usados na Vercel. A sincronização pública do GitHub funciona sem configurar variáveis. Para o formulário de contato, copie `.env.example` para `.env.local` e preencha as credenciais de e-mail.
 
 ```sh
 npm test
@@ -30,11 +30,21 @@ Referências: [tópicos no GitHub](https://docs.github.com/en/repositories/manag
 
 ## Escolher os destaques
 
-Marque `featured: true` nos projetos em `public/data.json`, ou use o painel administrativo existente. Mantenha uma seleção pequena e apresente problema, solução, tecnologias e links. Os campos opcionais `summary`, `challenge` e `approach` permitem escrever um resumo e explicar as decisões de cada projeto. Também podem ser editados no painel.
+Marque `featured: true` nos projetos em `public/data.json`. Mantenha uma seleção pequena e apresente problema, solução, tecnologias e links. Os campos opcionais `summary`, `challenge` e `approach` permitem escrever um resumo e explicar as decisões de cada projeto.
 
 O site usa os screenshots locais, sem depender de imagens aleatórias. Links para código são separados de links para aplicações. Currículo e certificados continuam em `public/`. A configuração de visibilidade e imagens dos trabalhos acadêmicos permanece em `abpConfig` no mesmo JSON.
 
-Ao executar `npm run dev` ou `npm run build`, o script `sync-portfolio.mjs` atualiza a cópia inicial em `src/data/portfolio-defaults.json`. Edite `public/data.json`, que continua sendo a fonte usada pelo painel administrativo.
+Ao executar `npm run dev` ou `npm run build`, o script `sync-portfolio.mjs` atualiza a cópia inicial em `src/data/portfolio-defaults.json`. Edite `public/data.json`; a cópia em `src` é gerada automaticamente. Alterações no conteúdo são publicadas por commit no GitHub e deploy da Vercel.
+
+## Trocar a foto do perfil
+
+1. Salve a nova foto em formato JPG e substitua `public/Gustavo.JPG` (mantenha exatamente o nome do arquivo).
+2. Execute `npm run optimize:images`. O script orienta a imagem conforme os dados da câmera e gera `public/portrait.webp`, que é a foto exibida no site.
+3. Confira com `npm run dev`. Depois envie o JPG e o WebP atualizados ao GitHub; a Vercel publicará a alteração.
+
+Prefira um retrato vertical, aproximadamente 3:4, com pelo menos 960 × 1280 pixels. Enquadre do peito para cima e deixe um pouco de espaço acima da cabeça. Fundo liso, luz natural à frente, câmera na altura dos olhos e roupa lisa combinam com a apresentação do portfólio. Evite espelho, celular cobrindo o rosto e filtros que alterem suas feições.
+
+A exibição está em `src/components/Hero.tsx`; recorte visual e efeito de cor ficam nas regras `.portrait-frame > img` de `src/index.css`. Não é necessário alterar o componente para substituir a foto.
 
 ## Vercel
 
@@ -45,14 +55,12 @@ Variáveis de ambiente, todas exclusivas do servidor:
 | Variável | Uso |
 | --- | --- |
 | `GITHUB_READ_TOKEN` | Opcional: token de leitura para aumentar os limites de consulta pública. |
-| `ADMIN_PASSWORD` | Senha forte para o painel administrativo. |
-| `GITHUB_TOKEN` | Token com Contents: Read and write, restrito ao repositório deste portfólio. Usado somente ao salvar ou enviar arquivos pelo painel. |
 | `GMAIL_USER` | Conta Gmail que recebe as mensagens. |
 | `GMAIL_APP_PASS` | Senha de aplicativo Gmail para o formulário de contato. |
 
-Remova `VITE_ADMIN_PASSWORD` da configuração anterior: variáveis com prefixo `VITE_` são públicas. A validação do login agora acontece no servidor. Sem credenciais de e-mail, o formulário informa a indisponibilidade e os links de e-mail, LinkedIn e WhatsApp continuam utilizáveis.
+O site não possui painel administrativo nem rotas de gravação de conteúdo. As antigas variáveis `ADMIN_PASSWORD`, `VITE_ADMIN_PASSWORD` e `GITHUB_TOKEN` não são mais utilizadas e podem ser removidas das configurações da Vercel. A sincronização pública de projetos usa somente leitura e não cria commits.
 
-O painel abre pelo botão discreto no rodapé ou por **Ctrl+Shift+A**. Alterações salvas pelo painel geram commits em `main`, como no fluxo original, e podem acionar o deploy automático da Vercel. A sincronização de leitura dos projetos não cria commits.
+Sem credenciais de e-mail, o formulário informa a indisponibilidade e os links de e-mail, LinkedIn e WhatsApp continuam utilizáveis.
 
 ## Imagens
 

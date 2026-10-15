@@ -1,15 +1,10 @@
 import { useState } from "react";
-import { ArrowUpRight, Code2, Settings, Trash2 } from "lucide-react";
-import { useAbpProjects, useOctacodeRepos, type AbpConfig } from "../hooks/useAbpProjects";
+import { ArrowUpRight, Code2 } from "lucide-react";
+import { useAbpProjects, type AbpConfig } from "../hooks/useAbpProjects";
 import { ACADEMIC_DESCRIPTIONS } from "../data/github";
-import { FileUpload } from "./FileUpload";
 
 interface AbpProjectsProps {
   abpConfig: AbpConfig[];
-  isAdmin?: boolean;
-  onAddAbpProject: (name: string) => void;
-  onRemoveAbpProject: (name: string) => void;
-  onUpdateAbpProject: (name: string, updates: Partial<AbpConfig>) => void;
 }
 
 function AcademicImage({ image }: { image: string }) {
@@ -28,19 +23,8 @@ function AcademicImage({ image }: { image: string }) {
   );
 }
 
-export function AbpProjects({
-  abpConfig,
-  isAdmin,
-  onAddAbpProject,
-  onRemoveAbpProject,
-  onUpdateAbpProject,
-}: AbpProjectsProps) {
-  const [manager, setManager] = useState(false);
-  const [selected, setSelected] = useState("");
+export function AbpProjects({ abpConfig }: AbpProjectsProps) {
   const { data: projects, dataUpdatedAt } = useAbpProjects(abpConfig);
-  const { data: repos } = useOctacodeRepos(Boolean(isAdmin && manager));
-  const available =
-    repos?.filter((repo) => !abpConfig.some((config) => config.name === repo.name)) ?? [];
   return (
     <section
       id="abp"
@@ -109,80 +93,6 @@ export function AbpProjects({
             Ver no GitHub ↗
           </a>
         </p>
-      )}
-      {isAdmin && (
-        <div className="abp-manager">
-          <button
-            className="button button-secondary"
-            onClick={() => setManager(!manager)}
-            aria-expanded={manager}
-          >
-            <Settings size={16} /> Gerenciar projetos acadêmicos
-          </button>
-          {manager && (
-            <div className="admin-abp-list">
-              {abpConfig.map((config) => (
-                <div key={config.name} className="admin-abp-item">
-                  <div className="admin-abp-title">
-                    <strong>{config.name}</strong>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={config.visible}
-                        onChange={() =>
-                          onUpdateAbpProject(config.name, { visible: !config.visible })
-                        }
-                      />{" "}
-                      Visível
-                    </label>
-                    <button
-                      className="icon-button danger"
-                      aria-label={`Remover ${config.name}`}
-                      onClick={() => onRemoveAbpProject(config.name)}
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                  <FileUpload
-                    accept="image"
-                    folder="projects"
-                    value={config.image}
-                    onChange={(image) => onUpdateAbpProject(config.name, { image })}
-                    adminPassword={sessionStorage.getItem("adminPassword") ?? ""}
-                  />
-                </div>
-              ))}
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  if (selected) {
-                    onAddAbpProject(selected);
-                    setSelected("");
-                  }
-                }}
-              >
-                <label htmlFor="add-academic">Adicionar repositório da equipe</label>
-                <select
-                  id="add-academic"
-                  className="admin-input"
-                  value={selected}
-                  required
-                  onChange={(event) => setSelected(event.target.value)}
-                >
-                  <option value="">Selecione um projeto</option>
-                  {available.map((repo) => (
-                    <option key={repo.id} value={repo.name}>
-                      {repo.name}
-                    </option>
-                  ))}
-                </select>
-                <button className="button button-primary" disabled={!selected}>
-                  Adicionar
-                </button>
-              </form>
-            </div>
-          )}
-        </div>
       )}
     </section>
   );

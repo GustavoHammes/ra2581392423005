@@ -1,16 +1,8 @@
-import { ArrowUpRight, Award, GraduationCap, Trash2 } from "lucide-react";
+import { ArrowUpRight, Award, GraduationCap } from "lucide-react";
 import type { Certificate } from "../data/projects";
 import { externalUrl } from "../lib/github";
 
-export function Certificates({
-  certificates,
-  isAdmin,
-  onRemove,
-}: {
-  certificates: Certificate[];
-  isAdmin: boolean;
-  onRemove?: (id: string) => void;
-}) {
+export function Certificates({ certificates }: { certificates: Certificate[] }) {
   return (
     <section id="formacao" className="section container" aria-labelledby="education-title">
       <div className="section-heading">
@@ -70,15 +62,6 @@ export function Certificates({
                   </a>
                 ) : (
                   <div className="certificate-no-link">{content}</div>
-                )}
-                {isAdmin && onRemove && (
-                  <button
-                    className="icon-button danger"
-                    aria-label={`Remover certificado ${cert.title}`}
-                    onClick={() => onRemove(cert.id)}
-                  >
-                    <Trash2 size={15} />
-                  </button>
                 )}
               </div>
             );

@@ -1,5 +1,5 @@
-import { copyFile } from 'node:fs/promises';
+import { copyFile } from "node:fs/promises";
 
-// Keep public/data.json as the admin panel's source of truth. Vite only imports
-// modules from src; this generated copy provides content before the fetch ends.
-await copyFile('public/data.json', 'src/data/portfolio-defaults.json');
+// Edit public/data.json. Vite imports the generated copy from src so the full
+// project selection is available immediately, without a second browser request.
+await copyFile("public/data.json", "src/data/portfolio-defaults.json");

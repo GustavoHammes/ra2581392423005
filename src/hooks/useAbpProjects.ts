@@ -7,14 +7,9 @@ export interface AbpConfig {
   image: string;
   visible: boolean;
 }
-export type GithubRepo = GitHubRepo;
 export interface AbpProject extends GitHubRepo {
   image: string;
   visible: boolean;
-}
-
-export function useOctacodeRepos(enabled = true) {
-  return useGitHub("team", enabled);
 }
 
 export function useAbpProjects(abpConfig: AbpConfig[]) {

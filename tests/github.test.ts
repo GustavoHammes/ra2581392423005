@@ -5,9 +5,7 @@ import { externalUrl, repositoryKey, selectPortfolioRepos } from "../src/lib/git
 import type { GitHubRepo } from "../src/data/github";
 import { loadGitHubRepos } from "../server/github";
 import github from "../api/github";
-import auth from "../api/auth";
 import contact from "../api/contact";
-import upload from "../api/uploadFile";
 
 const repo = (patch: Partial<GitHubRepo> = {}): GitHubRepo => ({
   id: 1,
@@ -27,11 +25,8 @@ const repo = (patch: Partial<GitHubRepo> = {}): GitHubRepo => ({
   private: false,
   ...patch,
 });
-const originalPassword = process.env.ADMIN_PASSWORD;
 afterEach(() => {
   mock.restoreAll();
-  if (originalPassword === undefined) delete process.env.ADMIN_PASSWORD;
-  else process.env.ADMIN_PASSWORD = originalPassword;
 });
 
 function response() {
@@ -150,31 +145,6 @@ test("GitHub failures are not cached", async () => {
   await github({ method: "GET", query: { account: "personal" } } as unknown as VercelRequest, res);
   assert.equal(result.code, 503);
   assert.equal(result.headers["Cache-Control"], "no-store");
-});
-test("admin authentication fails closed without a configured password", () => {
-  delete process.env.ADMIN_PASSWORD;
-  const { res, result } = response();
-  auth({ method: "POST", body: {} } as VercelRequest, res);
-  assert.equal(result.code, 401);
-});
-test("admin authentication accepts only the configured password", () => {
-  process.env.ADMIN_PASSWORD = "test-password";
-  for (const [password, expected] of [
-    ["incorrect", 401],
-    ["test-password", 200],
-    [null, 401],
-  ] as const) {
-    const { res, result } = response();
-    auth({ method: "POST", body: { password } } as VercelRequest, res);
-    assert.equal(result.code, expected);
-    assert.equal(result.headers["Cache-Control"], "no-store");
-  }
-});
-test("uploads reject unauthenticated requests even when the server password is missing", async () => {
-  delete process.env.ADMIN_PASSWORD;
-  const { res, result } = response();
-  await upload({ method: "POST", body: {} } as VercelRequest, res);
-  assert.equal(result.code, 401);
 });
 test("contact rejects invalid types and header injection without sending mail", async () => {
   for (const body of [

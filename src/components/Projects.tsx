@@ -1,25 +1,13 @@
 import { useState } from "react";
-import { ArrowUpRight, ChevronDown, Code2, Github, Trash2 } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Code2, Github } from "lucide-react";
 import type { Project } from "../data/projects";
 import { externalUrl, repositoryKey } from "../lib/github";
 
 interface ProjectsProps {
   projects: Project[];
-  isAdmin: boolean;
-  onRemove?: (id: string) => void;
 }
 
-function ProjectCard({
-  project,
-  index,
-  isAdmin,
-  onRemove,
-}: {
-  project: Project;
-  index: number;
-  isAdmin: boolean;
-  onRemove?: () => void;
-}) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [imageFailed, setImageFailed] = useState(false);
   const source = externalUrl(project.githubUrl);
   const candidate = externalUrl(project.liveUrl);
@@ -59,15 +47,6 @@ function ProjectCard({
                 ? "WEB & MOBILE"
                 : "APLICAÇÃO WEB"}
           </span>
-          {isAdmin && onRemove && (
-            <button
-              className="icon-button danger"
-              onClick={onRemove}
-              aria-label={`Remover ${project.title}`}
-            >
-              <Trash2 size={16} />
-            </button>
-          )}
         </div>
         <h3>{project.title}</h3>
         <p className="project-description">{project.summary || project.description}</p>
@@ -118,7 +97,7 @@ function ProjectCard({
   );
 }
 
-export function Projects({ projects, isAdmin, onRemove }: ProjectsProps) {
+export function Projects({ projects }: ProjectsProps) {
   const featured = [...projects.filter((p) => p.featured)].sort(
     (a, b) => Number(b.title === "App Scholar") - Number(a.title === "App Scholar"),
   );
@@ -144,13 +123,7 @@ export function Projects({ projects, isAdmin, onRemove }: ProjectsProps) {
       </div>
       <div className="projects-grid">
         {selected.map((project, index) => (
-          <ProjectCard
-            key={project.id}
-            project={project}
-            index={index}
-            isAdmin={isAdmin}
-            onRemove={onRemove ? () => onRemove(project.id) : undefined}
-          />
+          <ProjectCard key={project.id} project={project} index={index} />
         ))}
       </div>
     </section>

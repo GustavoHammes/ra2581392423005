@@ -1,10 +1,7 @@
 import type { Plugin } from "vite";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import github from "../api/github";
-import auth from "../api/auth";
 import contact from "../api/contact";
-import saveData from "../api/saveData";
-import uploadFile from "../api/uploadFile";
 
 // The same handlers run locally and in Vercel Functions.
 export function localApi(): Plugin {
@@ -14,10 +11,7 @@ export function localApi(): Plugin {
   ) => VercelResponse | Promise<VercelResponse>;
   const routes = new Map<string, Handler>([
     ["/api/github", github],
-    ["/api/auth", auth],
     ["/api/contact", contact],
-    ["/api/saveData", saveData],
-    ["/api/uploadFile", uploadFile],
   ]);
   return {
     name: "portfolio-local-api",

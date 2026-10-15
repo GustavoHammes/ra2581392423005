@@ -30,3 +30,4 @@ export interface Certificate {
 
 export const DEFAULT_PROJECTS: Project[] = portfolioData.projects as Project[];
 export const DEFAULT_CERTIFICATES: Certificate[] = portfolioData.certificates;
+export const DEFAULT_ABP_CONFIG = portfolioData.abpConfig;
