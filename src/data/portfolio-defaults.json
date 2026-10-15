@@ -1,0 +1,148 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "NLW Agents",
+      "description": "Aplicação com IA, transcrição de áudio e interface moderna construída com React e TailwindCSS.",
+      "image": "/projects/nlw-agents.webp",
+      "tags": [
+        "React",
+        "IA",
+        "TailwindCSS"
+      ],
+      "category": "Pessoal",
+      "featured": true,
+      "liveUrl": "",
+      "githubUrl": "https://github.com/GustavoHammes/NLW-agents-Rocketseat",
+      "summary": "Inteligência artificial e transcrição de áudio em uma aplicação desenvolvida durante o NLW Agents, da Rocketseat.",
+      "challenge": "Explorar o uso de inteligência artificial e áudio em uma interface web.",
+      "approach": "Projeto de estudo com React e TailwindCSS, integrando os conceitos apresentados durante o evento."
+    },
+    {
+      "id": "3",
+      "title": "Simulador Financeiro",
+      "description": "Ferramenta para simulação de investimentos e empréstimos com cálculos em tempo real.",
+      "image": "/projects/investimento.png",
+      "tags": [
+        "React",
+        "TypeScript"
+      ],
+      "category": "Faculdade",
+      "featured": false,
+      "liveUrl": "",
+      "githubUrl": "https://github.com/GustavoHammes/Financias"
+    },
+    {
+      "title": "Baixador de Áudio do YouTube",
+      "description": "Um aplicativo Fullstack multiplataforma (Web, Android e iOS) para baixar áudios do YouTube em alta qualidade (MP3) com suporte a extração de capa (thumbnail) original do vídeo.",
+      "image": "/projects/baixador_mp3_mp4.png",
+      "tags": [
+        "React Native",
+        "Expo",
+        "Node.js",
+        "Express",
+        "yt-dlp",
+        "FFmpeg"
+      ],
+      "category": "Pessoal",
+      "liveUrl": "https://baixador-mp3.vercel.app/",
+      "githubUrl": "https://github.com/GustavoHammes/Projetos_caseiros/tree/main/Projeto%20mp3_mp4",
+      "featured": true,
+      "id": "1773778678436",
+      "summary": "Aplicação multiplataforma para extrair áudio e capa de vídeos, com interface em React Native e processamento no backend.",
+      "challenge": "Disponibilizar o mesmo fluxo de extração de áudio para web e dispositivos móveis.",
+      "approach": "Interface com React Native e Expo, API em Node.js e Express e processamento de mídia com yt-dlp e FFmpeg."
+    },
+    {
+      "title": "App Scholar",
+      "description": "Sistema acadêmico web e mobile para gerenciamento de alunos, professores, disciplinas, notas e boletins. Possui autenticação por perfil, controle de permissões, cálculo automático de médias e situação dos alunos. O projeto também conta com versão mobile em React Native com Expo, podendo ser utilizado no celular pelo Expo Go.",
+      "image": "/projects/e0d205de-f6a3-4034-932a-f101ec1d5257.jfif",
+      "tags": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "React Native",
+        "Next.js",
+        "Express",
+        "Prisma",
+        "Expo",
+        "TailwindCSS"
+      ],
+      "category": "Faculdade",
+      "liveUrl": "",
+      "githubUrl": "https://github.com/GustavoHammes/App_Scholar",
+      "featured": true,
+      "id": "1780097737812",
+      "summary": "Gestão acadêmica na web e no celular, com perfis de acesso, disciplinas, notas e boletins em uma única aplicação.",
+      "challenge": "Centralizar informações acadêmicas e oferecer funcionalidades específicas para administradores, professores e alunos.",
+      "approach": "Frontend web e aplicativo mobile conectados a uma API REST, com autenticação por perfil e persistência em PostgreSQL via Prisma."
+    }
+  ],
+  "certificates": [
+    {
+      "id": "1",
+      "title": "NLW Agents",
+      "issuer": "Rocketseat",
+      "year": "2025",
+      "url": "https://app.rocketseat.com.br/certificates/44817ebf-e9fd-4275-b6be-e2f3fba58421"
+    },
+    {
+      "id": "2",
+      "title": "Discover",
+      "issuer": "Rocketseat",
+      "year": "2024",
+      "url": "https://app.rocketseat.com.br/certificates/246212d7-5030-4de8-a835-30786b455b0f"
+    },
+    {
+      "id": "3",
+      "title": "Bootcamp Creator IT – Low Code",
+      "issuer": "Creator IT",
+      "year": "2024",
+      "url": "/Certificado_lowcode.jpg"
+    },
+    {
+      "id": "4",
+      "title": "Front-end com Gemini",
+      "issuer": "Alura",
+      "year": "2024",
+      "url": "https://cursos.alura.com.br/immersion/certificate/b69b431d-6e9c-40aa-8c9e-72e739b92631?lang"
+    },
+    {
+      "id": "5",
+      "title": "Imersão Cloud Devops",
+      "issuer": "Alura",
+      "year": "2024",
+      "url": "https://cursos.alura.com.br/immersion/certificate/c2561f7e-153a-4f8c-abe3-d52c00022876?lang"
+    },
+    {
+      "id": "6",
+      "title": "NDG Linux Unhatched",
+      "issuer": "Cisco",
+      "year": "2023",
+      "url": "/Certificado_cisco.pdf"
+    }
+  ],
+  "abpConfig": [
+    {
+      "name": "ABP4",
+      "image": "/projects/abp-abp4.jpeg",
+      "visible": true
+    },
+    {
+      "name": "ABP3",
+      "image": "/projects/abp-abp3.jfif",
+      "visible": true
+    },
+    {
+      "name": "ABP2",
+      "image": "/projects/abp-abp2.png",
+      "visible": true
+    },
+    {
+      "name": "ABP1",
+      "image": "/projects/abp-abp1.png",
+      "visible": true
+    }
+  ]
+}

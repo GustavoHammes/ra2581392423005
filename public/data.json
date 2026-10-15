@@ -4,7 +4,7 @@
       "id": "1",
       "title": "NLW Agents",
       "description": "Aplicação com IA, transcrição de áudio e interface moderna construída com React e TailwindCSS.",
-      "image": "/projects/nlw-agents.png",
+      "image": "/projects/nlw-agents.webp",
       "tags": [
         "React",
         "IA",
@@ -12,8 +12,11 @@
       ],
       "category": "Pessoal",
       "featured": true,
-      "liveUrl": "https://github.com/GustavoHammes/NLW-agents-Rocketseat",
-      "githubUrl": "https://github.com/GustavoHammes/NLW-agents-Rocketseat"
+      "liveUrl": "",
+      "githubUrl": "https://github.com/GustavoHammes/NLW-agents-Rocketseat",
+      "summary": "Inteligência artificial e transcrição de áudio em uma aplicação desenvolvida durante o NLW Agents, da Rocketseat.",
+      "challenge": "Explorar o uso de inteligência artificial e áudio em uma interface web.",
+      "approach": "Projeto de estudo com React e TailwindCSS, integrando os conceitos apresentados durante o evento."
     },
     {
       "id": "3",
@@ -26,7 +29,7 @@
       ],
       "category": "Faculdade",
       "featured": false,
-      "liveUrl": "https://github.com/GustavoHammes/Financias",
+      "liveUrl": "",
       "githubUrl": "https://github.com/GustavoHammes/Financias"
     },
     {
@@ -36,18 +39,19 @@
       "tags": [
         "React Native",
         "Expo",
-        "Expo File System",
-        "Expo Sharing",
         "Node.js",
         "Express",
         "yt-dlp",
-        "FFmpeg."
+        "FFmpeg"
       ],
       "category": "Pessoal",
       "liveUrl": "https://baixador-mp3.vercel.app/",
       "githubUrl": "https://github.com/GustavoHammes/Projetos_caseiros/tree/main/Projeto%20mp3_mp4",
       "featured": true,
-      "id": "1773778678436"
+      "id": "1773778678436",
+      "summary": "Aplicação multiplataforma para extrair áudio e capa de vídeos, com interface em React Native e processamento no backend.",
+      "challenge": "Disponibilizar o mesmo fluxo de extração de áudio para web e dispositivos móveis.",
+      "approach": "Interface com React Native e Expo, API em Node.js e Express e processamento de mídia com yt-dlp e FFmpeg."
     },
     {
       "title": "App Scholar",
@@ -55,21 +59,24 @@
       "image": "/projects/e0d205de-f6a3-4034-932a-f101ec1d5257.jfif",
       "tags": [
         "React",
-        "Next.js",
-        "React Native",
-        "Expo",
         "TypeScript",
         "Node.js",
+        "PostgreSQL",
+        "React Native",
+        "Next.js",
         "Express",
         "Prisma",
-        "PostgreSQL",
+        "Expo",
         "TailwindCSS"
       ],
       "category": "Faculdade",
       "liveUrl": "",
       "githubUrl": "https://github.com/GustavoHammes/App_Scholar",
       "featured": true,
-      "id": "1780097737812"
+      "id": "1780097737812",
+      "summary": "Gestão acadêmica na web e no celular, com perfis de acesso, disciplinas, notas e boletins em uma única aplicação.",
+      "challenge": "Centralizar informações acadêmicas e oferecer funcionalidades específicas para administradores, professores e alunos.",
+      "approach": "Frontend web e aplicativo mobile conectados a uma API REST, com autenticação por perfil e persistência em PostgreSQL via Prisma."
     }
   ],
   "certificates": [
