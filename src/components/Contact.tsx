@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { ArrowUpRight, Check, Github, Linkedin, Loader2, Mail, Send } from "lucide-react";
+import { CONTACT_EMAIL } from "../data/profile";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -51,8 +52,8 @@ export function Contact() {
             Tem um projeto em mente, uma oportunidade
             <br className="desktop-break" /> ou vontade de trocar uma ideia? Me escreva.
           </p>
-          <a className="contact-email" href="mailto:daffa1632@gmail.com">
-            daffa1632@gmail.com <ArrowUpRight size={22} />
+          <a className="contact-email" href={`mailto:${CONTACT_EMAIL}`}>
+            {CONTACT_EMAIL} <ArrowUpRight size={22} />
           </a>
           <div className="social-links">
             <a href="https://github.com/GustavoHammes" target="_blank" rel="noopener noreferrer">

@@ -38,9 +38,9 @@ Ao executar `npm run dev` ou `npm run build`, o script `sync-portfolio.mjs` atua
 
 ## Trocar a foto do perfil
 
-1. Salve a nova foto em formato JPG e substitua `public/Gustavo.JPG` (mantenha exatamente o nome do arquivo).
+1. Salve a nova foto em formato PNG e substitua `public/Gustavo.png` (mantenha exatamente o nome do arquivo).
 2. Execute `npm run optimize:images`. O script orienta a imagem conforme os dados da câmera e gera `public/portrait.webp`, que é a foto exibida no site.
-3. Confira com `npm run dev`. Depois envie o JPG e o WebP atualizados ao GitHub; a Vercel publicará a alteração.
+3. Confira com `npm run dev`. Depois envie o PNG e o WebP atualizados ao GitHub; a Vercel publicará a alteração.
 
 Prefira um retrato vertical, aproximadamente 3:4, com pelo menos 960 × 1280 pixels. Enquadre do peito para cima e deixe um pouco de espaço acima da cabeça. Fundo liso, luz natural à frente, câmera na altura dos olhos e roupa lisa combinam com a apresentação do portfólio. Evite espelho, celular cobrindo o rosto e filtros que alterem suas feições.
 
@@ -55,8 +55,10 @@ Variáveis de ambiente, todas exclusivas do servidor:
 | Variável | Uso |
 | --- | --- |
 | `GITHUB_READ_TOKEN` | Opcional: token de leitura para aumentar os limites de consulta pública. |
-| `GMAIL_USER` | Conta Gmail que recebe as mensagens. |
+| `GMAIL_USER` | Conta Gmail autenticada para enviar as mensagens; pode ser diferente do e-mail público. |
 | `GMAIL_APP_PASS` | Senha de aplicativo Gmail para o formulário de contato. |
+
+O endereço público e destinatário do formulário ficam em `src/data/profile.ts`, atualmente `gustavohfhammes@gmail.com`. Essa separação permite continuar enviando pela conta Gmail antiga e receber no endereço novo. A confirmação automática continua indo para o endereço informado pelo visitante.
 
 O site não possui painel administrativo nem rotas de gravação de conteúdo. As antigas variáveis `ADMIN_PASSWORD`, `VITE_ADMIN_PASSWORD` e `GITHUB_TOKEN` não são mais utilizadas e podem ser removidas das configurações da Vercel. A sincronização pública de projetos usa somente leitura e não cria commits.
 

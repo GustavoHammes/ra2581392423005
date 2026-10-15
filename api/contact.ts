@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import nodemailer from "nodemailer";
+import { CONTACT_EMAIL } from "../src/data/profile.js";
 
 const escapeHtml = (text: string) =>
   text.replace(
@@ -44,7 +45,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
   if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASS)
     return res.status(503).json({
-      error: "O formulário está indisponível. Envie sua mensagem para daffa1632@gmail.com.",
+      error: `O formulário está indisponível. Envie sua mensagem para ${CONTACT_EMAIL}.`,
     });
 
   try {
@@ -53,14 +54,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.GMAIL_USER, // Seu Gmail: seuemail@gmail.com
+        user: process.env.GMAIL_USER, // Conta autenticada para enviar, independente do destinatário.
         pass: process.env.GMAIL_APP_PASS, // Google App Password (não a senha normal)
       },
     });
 
     await transporter.sendMail({
       from: `"Portfólio GH" <${process.env.GMAIL_USER}>`,
-      to: process.env.GMAIL_USER, // Recebe no próprio email
+      to: CONTACT_EMAIL,
       replyTo: email,
       subject: `[Portfólio] Nova mensagem de ${cleanName}`,
       html: `
